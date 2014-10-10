@@ -1,5 +1,9 @@
 # Basics of Hashes
 #
+# A hash can also be thought of as a dictionary or mapping.
+# Any object can be mapped to any other object inside it.
+# It is useful for storing data such as prices of various store items.
+# Data is retrieved similar to an array, but with the key object within the [].
 
 # Creating a new hash can be done in two ways.
 # The latter is more common.
