@@ -34,6 +34,18 @@ def to_arabic(roman)
 end
 
 def to_roman(arabic)
+	result = ""
+	remainder = arabic.to_i
+
+	while remainder > 0
+		accepted_values = TO_ROMAN.keys.select { |value| remainder >= value }
+		maximum = accepted_values.max
+
+		result += TO_ROMAN[maximum]
+		remainder -= maximum
+	end
+
+	result
 end
 
 def convert_numeral(value)
