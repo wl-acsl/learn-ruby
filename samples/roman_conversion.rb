@@ -30,6 +30,22 @@ def is_roman?(number)
 	roman
 end
 
+def to_arabic(roman)
+end
+
+def to_roman(arabic)
+end
+
+def convert_numeral(value)
+	if is_arabic?(value)
+		to_roman(value)
+	elsif is_roman?(value)
+		to_arabic(value)
+	else
+		"?"
+	end
+end
+
 ARGV.each do |argument|
-	puts "Arabic: #{is_arabic?(argument)}, Roman: #{is_roman?(argument)}"
+	puts "#{argument} = #{convert_numeral(argument)}"
 end
