@@ -5,6 +5,18 @@ class String
 	end
 end
 
+# Add a method to split Integer into its places (tens, hundreds, etc.).
+class Integer
+	def to_places
+		numbers = self.to_s.chars.map(&:to_i)
+		multipliers = (0...numbers.size).to_a.reverse
+
+		numbers.each_with_index.map do |number, index|
+			number * (10 ** multipliers[index])
+		end
+	end
+end
+
 TO_ARABIC = {
 	"I" => 1,
 	"V" => 5,
