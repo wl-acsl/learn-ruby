@@ -47,14 +47,31 @@ end
 
 def to_roman(arabic)
 	result = ""
-	remainder = arabic.to_i
+	places = arabic.to_i.to_places
+	places.delete(0)
 
-	while remainder > 0
-		accepted_values = TO_ROMAN.keys.select { |value| remainder >= value }
-		maximum = accepted_values.max
+	places.each do |place|
+		# Convert place to roman numerals.
+		greater_than_numerals = TO_ROMAN.keys.select { |key| place >= key }
+		less_than_numerals = TO_ROMAN.keys.select { |key| place < key }
+		next_highest = less_than_numerals.min || 1000
 
-		result += TO_ROMAN[maximum]
-		remainder -= maximum
+		# Account for weird cases like IX.
+		# Checks if 10^x of the lowest numeral greater than place minus place is an integer.
+		if place < next_highest && Math.log10(next_highest - place) % 1 == 0
+			result += TO_ROMAN[less_than_numerals.min - place]
+			result += TO_ROMAN[less_than_numerals.min]
+		else
+			remainder = place
+
+			while remainder > 0
+				greater_than_numerals = TO_ROMAN.keys.select { |key| remainder >= key }
+				maximum = greater_than_numerals.max
+				
+				result += TO_ROMAN[maximum]
+				remainder -= maximum
+			end
+		end
 	end
 
 	result
