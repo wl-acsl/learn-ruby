@@ -43,6 +43,20 @@ def is_roman?(number)
 end
 
 def to_arabic(roman)
+	result = 0
+	index = 0
+
+	while roman[index]
+		if TO_ARABIC[roman[index + 1]] && TO_ARABIC[roman[index]] < TO_ARABIC[roman[index + 1]]
+			result += TO_ARABIC[roman[index + 1]] - TO_ARABIC[roman[index]]
+			index += 2
+		else
+			result += TO_ARABIC[roman[index]]
+			index += 1
+		end
+	end
+
+	result
 end
 
 def to_roman(arabic)
