@@ -69,7 +69,7 @@ def to_roman(arabic)
 		# Convert place to roman numerals.
 		greater_than_numerals = TO_ROMAN.keys.select { |key| place >= key }
 		less_than_numerals = TO_ROMAN.keys.select { |key| place < key }
-		next_highest = less_than_numerals.min || 1000
+		next_highest = less_than_numerals.min || TO_ROMAN.keys.max
 
 		# Account for weird cases like IX.
 		# Checks if 10^x of the lowest numeral greater than place minus place is an integer.
