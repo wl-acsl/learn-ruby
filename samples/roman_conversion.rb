@@ -47,6 +47,7 @@ def to_arabic(roman)
 	index = 0
 
 	while roman[index]
+		# Special case of IX and such.
 		if TO_ARABIC[roman[index + 1]] && TO_ARABIC[roman[index]] < TO_ARABIC[roman[index + 1]]
 			result += TO_ARABIC[roman[index + 1]] - TO_ARABIC[roman[index]]
 			index += 2
